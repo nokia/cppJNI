@@ -16,7 +16,7 @@ namespace lang
     template<typename T>
     struct String: virtual Comparable<T>, virtual Object<T>
     {
-        using class_path_t = typestring_is("java/lang/String");
+        using class_path_t = string_type_is("java/lang/String");
         
         MAKE_JAVA_CONSTRUCTOR(types::Object<java::lang::String>(), types::Object<java::lang::String>(::cppjni::String))
         

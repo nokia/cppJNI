@@ -5,7 +5,7 @@
 
 #include <jni.h>
 
-#include <typestring.hh>
+#include <cppjni/concepts/string_type.hpp>
 
 #include "object.fwd.hpp"
 
@@ -41,7 +41,7 @@ namespace types
     {
         using native_t = void;
         using jni_t = void;
-        using jni_type_string_t = typestring_is("V");
+        using jni_type_string_t = string_type_is("V");
         
         template<typename T>
         struct isConvertible
@@ -50,13 +50,13 @@ namespace types
         };
     };
     
-    using Boolean = detail::PrimitiveConverter<bool, jboolean, typestring_is("Z")>;
-    using Byte = detail::PrimitiveConverter<std::int8_t, jchar, typestring_is("B")>;
-    using Char = detail::PrimitiveConverter<std::uint16_t, jchar, typestring_is("C")>;
-    using Short = detail::PrimitiveConverter<std::int16_t, jshort, typestring_is("S")>;
-    using Int = detail::PrimitiveConverter<std::int32_t, jint, typestring_is("I")>;
-    using Long = detail::PrimitiveConverter<std::int64_t, jlong, typestring_is("J")>;
-    using Float = detail::PrimitiveConverter<float, jfloat, typestring_is("F")>;
-    using Double = detail::PrimitiveConverter<double, jdouble, typestring_is("D")>;
+    using Boolean = detail::PrimitiveConverter<bool, jboolean, string_type_is("Z")>;
+    using Byte = detail::PrimitiveConverter<std::int8_t, jchar, string_type_is("B")>;
+    using Char = detail::PrimitiveConverter<std::uint16_t, jchar, string_type_is("C")>;
+    using Short = detail::PrimitiveConverter<std::int16_t, jshort, string_type_is("S")>;
+    using Int = detail::PrimitiveConverter<std::int32_t, jint, string_type_is("I")>;
+    using Long = detail::PrimitiveConverter<std::int64_t, jlong, string_type_is("J")>;
+    using Float = detail::PrimitiveConverter<float, jfloat, string_type_is("F")>;
+    using Double = detail::PrimitiveConverter<double, jdouble, string_type_is("D")>;
 }
 }

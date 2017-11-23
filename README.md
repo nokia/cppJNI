@@ -5,9 +5,8 @@ Java Native Interface (JNI) framework wrapper, which uses new C++ features in or
 Requirements
 --------
  * Boost 1.61 or higher (http://www.boost.org)
- * irqus::typestring for compile time strings (https://github.com/irrequietus/typestring)
  * C++14 compatible compiler (clang >= 3.8, gcc >= 6.0)
-
+ * google test for UT (>= 1.8)
 
 Quick Start
 --------

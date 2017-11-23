@@ -14,6 +14,9 @@ get_target_property(_classDir jni.test CLASSDIR)
 
 
 # C++ part  ------------
+
+find_package(GTest 1.8 REQUIRED)
+
 set(SOURCES
 #     jni_mpl_should.cpp
     ClassShould.cpp

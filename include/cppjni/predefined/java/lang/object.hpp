@@ -16,7 +16,7 @@ namespace lang
     template<typename T>
     struct Object: virtual T
     {
-        using class_path_t = typestring_is("java/lang/Object");
+        using class_path_t = string_type_is("java/lang/Object");
         
         MAKE_JAVA_CONSTRUCTOR(types::Object<java::lang::Object>())
         

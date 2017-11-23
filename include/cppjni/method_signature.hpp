@@ -28,7 +28,7 @@ namespace cppjni
 }
 
 #define MAKE_JAVA_METHOD(functionName, ...) \
-using jni_##functionName##_overloads_t = ::cppjni::metadeclaration::generate_overloaded_method_declarations<typestring_is(#functionName), __VA_ARGS__>; \
+using jni_##functionName##_overloads_t = ::cppjni::metadeclaration::generate_overloaded_method_declarations<string_type_is(#functionName), __VA_ARGS__>; \
  \
 template<typename ...args_t> \
 auto functionName(args_t&&... args) const \

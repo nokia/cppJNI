@@ -1,6 +1,5 @@
 #pragma once
-#include <typestring.hh>
-
+#include <cppjni/concepts/string_type.hpp>
 #include <cppjni/method_signature.hpp>
 #include <cppjni/predefined/java/lang/object.hpp>
 #include <cppjni/predefined/java/lang/string.hpp>
@@ -16,7 +15,7 @@ namespace cppjni
     template<typename T>
     struct JNITest: virtual java::lang::Object<T>
     {
-        using class_path_t = typestring_is("jni/test/JNITest");
+        using class_path_t = string_type_is("jni/test/JNITest");
 
         MAKE_JAVA_CONSTRUCTOR(cj::types::Object<::test::cppjni::JNITest>(cj::Int, cj::String))
         

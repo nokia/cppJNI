@@ -15,7 +15,7 @@ namespace util
     template<typename T>
     struct List: virtual java::lang::Object<T>
     {
-        using class_path_t = typestring_is("java/util/List");
+        using class_path_t = string_type_is("java/util/List");
         
         MAKE_JAVA_METHOD(add, Method<Boolean(java::lang::Object_)>, Method<Void(Int, java::lang::Object_)>)
         MAKE_JAVA_METHOD(contains, Method<Boolean(java::lang::Object_)>)

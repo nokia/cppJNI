@@ -8,9 +8,8 @@
 
 #include <jni.h>
 
-#include <typestring.hh>
-
 #include <cppjni/concepts/is_jni_reference_wrapper_type.hpp>
+#include <cppjni/concepts/string_type.hpp>
 #include <cppjni/jni_wrappers/environment.hpp>
 
 #include "object.fwd.hpp"
@@ -23,8 +22,8 @@ namespace types
     {
         using native_t = std::string;
         using jni_t = jstring;
-        using jni_string_path_t = typestring_is("java/lang/String");
-        using jni_type_string_t = irqus::tycat<typestring_is("L"), jni_string_path_t, typestring_is(";")>;
+        using jni_string_path_t = string_type_is("java/lang/String");
+        using jni_type_string_t = concepts::concatenate<string_type_is("L"), jni_string_path_t, string_type_is(";")>;
         
         /**
          * This may look a bit complicated: all we want here is to use only char pointers and one dimensional arrays (doesn't matter how it's decorated with const, volatile etc.),

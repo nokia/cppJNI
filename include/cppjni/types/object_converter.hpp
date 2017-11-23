@@ -7,7 +7,7 @@
 
 #include <jni.h>
 
-#include <typestring.hh>
+#include <cppjni/concepts/string_type.hpp>
 
 #include <cppjni/concepts/is_jni_reference_wrapper_type.hpp>
 #include <cppjni/concepts/static_list.hpp>
@@ -28,7 +28,7 @@ namespace types
         using native_t = types::Object<class_definition_t>;
         using jni_t = jobject;
         using class_path_t = typename class_definition_t<types::ObjectContainer>::class_path_t;
-        using jni_type_string_t = irqus::tycat<typestring_is("L"), class_path_t, typestring_is(";")>;
+        using jni_type_string_t = concepts::concatenate<string_type_is("L"), class_path_t, string_type_is(";")>;
         
         template<typename T>
         using isConvertible = 

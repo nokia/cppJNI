@@ -79,8 +79,7 @@ target_include_directories(
     PUBLIC
         ${HEADERS_DIR}
         ${JNI_INCLUDE_DIRS}
-        ${BOOST_ROOT}/include
-        ${TYPESTRING_INCLUDE_DIR}
+        ${Boost_INCLUDE_DIRS}
 )
 
 target_link_libraries(${PROJECT_NAME}

@@ -1,11 +1,11 @@
 #pragma once
-#include <typestring.hh>
+#include <cppjni/concepts/string_type.hpp>
 
 namespace cppjni
 {
 namespace jniwrappers
 {
-    using constructor_method_name_t = typestring_is("<init>");
+    using constructor_method_name_t = string_type_is("<init>");
     
     template<typename Signature, typename = void>
     struct generate_jni_signature_string;
@@ -13,10 +13,10 @@ namespace jniwrappers
     template<typename ReturnType, typename ...Args>
     struct generate_jni_signature_string<ReturnType(Args...), void>
     {
-        using type = irqus::tycat<
-            typestring_is("("), 
+        using type = concepts::concatenate<
+            string_type_is("("),
                 typename Args::jni_type_string_t..., 
-            typestring_is(")"), 
+            string_type_is(")"), 
             typename ReturnType::jni_type_string_t
         >;
     };

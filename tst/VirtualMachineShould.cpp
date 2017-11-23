@@ -33,7 +33,7 @@ template<typename T>
 struct BadClass: T
 {
     using T::T;
-    using class_path_t = typestring_is("bad/class/path");
+    using class_path_t = string_type_is("bad/class/path");
 };
 
 TEST_F(VirtualMachineShould, throwWhenClassWasntFound)

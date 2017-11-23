@@ -1,8 +1,6 @@
 #pragma once
 #include <boost/hana/tuple.hpp>
 
-#include <typestring.hh>
-
 #include "jni_constructor_signature_hack.hpp"
 #include "method_scope_category.hpp"
 

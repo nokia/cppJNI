@@ -33,10 +33,13 @@ namespace test
     using testList1 = list<A, B, int>;
     using testList2 = list<list<A>, list<B>, list<int>>;
     
+    template<typename T>
+    using wrap_in_list = list<T>;
+    
     static_assert(
         is_same<
             testList2,
-            typename apply<transform<make_list>, testList1>::template f<>
+            eager::apply<transform<wrap_in_list>, testList1>
         >::value,
         ""
     );
@@ -44,7 +47,7 @@ namespace test
     static_assert(
         is_same<
             testList1,
-            typename apply<join, testList2>::template f<>
+            eager::apply<join, testList2>
         >::value,
         ""
     );
@@ -52,9 +55,9 @@ namespace test
     static_assert(
         is_same<
             testList1,
-            apply<
+            eager::apply<
                 join, testList2
-            >::template f<make_list>
+            >
         >::value,
         ""
     );
@@ -62,7 +65,7 @@ namespace test
     static_assert(
         is_same<
             testList1,
-            typename apply<filter<any>, testList1>::template f<>
+            eager::apply<filter<any>, testList1>
         >::value,
         ""
     );
@@ -70,7 +73,7 @@ namespace test
     static_assert(
         is_same<
             std::false_type,
-            typename apply<all<is_true>, testList1>::template f<>
+            eager::apply<all<is_true>, testList1, identity>
         >::value,
         ""
     );
@@ -78,23 +81,7 @@ namespace test
     static_assert(
         is_same<
             std::true_type,
-            typename apply<all<any>, testList1>::template f<>
-        >::value,
-        ""
-    );
-    
-    static_assert(
-        is_same<
-            testList1,
-            typename apply<make_list, testList1>::template f<>
-        >::value,
-        ""
-    );
-    
-    static_assert(
-        is_same<
-            testList2,
-            typename apply<make_list, testList2>::template f<>
+            eager::apply<all<any>, testList1, identity>
         >::value,
         ""
     );
@@ -102,7 +89,7 @@ namespace test
     static_assert(
         is_same<
             optional_value<int>,
-            typename apply<find_if<is_int>, testList1>::template f<>
+            eager::apply<find_if<is_int>, testList1, optional>
         >::value,
         ""
     );

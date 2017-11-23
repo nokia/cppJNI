@@ -18,35 +18,28 @@ get_target_property(_classDir jni.test CLASSDIR)
 find_package(GTest 1.8 REQUIRED)
 
 set(SOURCES
-#     jni_mpl_should.cpp
-    ClassShould.cpp
-    ObjectShould.cpp
-    PredefinedShould.cpp
-    VirtualMachineShould.cpp
-    VMInstance.cpp
+    mpl_should.cpp
+    class_should.cpp
+    object_should.cpp
+    predefined_should.cpp
+    virtual_machine_should.cpp
+    vm_instance.cpp
 )
 set(HEADERS
     test_subject/jni/test/JNITest.hpp
-    VMInstance.hpp
+    vm_instance.hpp
 )
 
 include_directories(
     $<TARGET_PROPERTY:cppJNI,INCLUDE_DIRECTORIES>
     test_subject/
-    ${GTEST_INCLUDE_DIR}
-    ${GMOCK_INCLUDE_DIR}
 )
-
 add_definitions(-DBOOST_HANA_CONFIG_ENABLE_DEBUG_MODE)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 add_dependencies(${PROJECT_NAME} jni.test)
 target_link_libraries(${PROJECT_NAME}
-    -L${GTEST_LIBRARY_DIR}
-    -L${GMOCK_LIBRARY_DIR}
-    gtest
-    gmock
-    gmock_main
+    ${GTEST_BOTH_LIBRARIES}
     cppJNI
     ${JNI_LIBRARIES}
     pthread

@@ -11,9 +11,9 @@ namespace mpl
     {
         enum class all_selection_e {CONTINUE, TRUE, FALSE};
         
-        constexpr all_selection_e select_all_impl(unsigned size, bool isTrue)
+        constexpr all_selection_e select_all_impl(unsigned size, bool condition)
         {
-            return !isTrue ? all_selection_e::FALSE
+            return !condition ? all_selection_e::FALSE
                           : size > 1 ? all_selection_e::CONTINUE
                                      : all_selection_e::TRUE;
         }

@@ -1,4 +1,4 @@
-#include "VMInstance.hpp"
+#include "vm_instance.hpp"
 #include <cppjni/virtual_machine.hpp>
 
 namespace test 

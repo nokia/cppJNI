@@ -6,7 +6,7 @@
 #include <cppjni/virtual_machine.hpp>
 
 #include <jni/test/JNITest.hpp>
-#include "VMInstance.hpp"
+#include "vm_instance.hpp"
 
 namespace test
 {

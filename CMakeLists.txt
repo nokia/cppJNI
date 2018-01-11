@@ -11,12 +11,7 @@ find_package(Threads REQUIRED)
 find_package(Hana REQUIRED)
 add_definitions(-DUSE_TYPESTRING=8)
 
-if (CMAKE_CXX_COMPILER MATCHES GCC)
-    add_compile_options(-ftemplate-depth-1024 -ftemplate-backtrace-limit=0 -Wno-gnu-string-literal-operator-template)
-elseif (CMAKE_CXX_COMPILER MATCHES LLVM)
-    SET(CMAKE_CXX_FLAGS_DEBUG " -Wno-error=ignored-attributes -Wno-error=unused-command-line-argument -Wno-error=deprecated-declarations ${CMAKE_CXX_FLAGS_DEBUG}")
-    SET(CMAKE_CXX_FLAGS_RELEASE " -Wno-error=ignored-attributes -Wno-error=unused-command-line-argument -Wno-error=deprecated-declarations ${CMAKE_CXX_FLAGS_RELEASE}")
-endif ()
+add_compile_options(-ftemplate-depth-1024 -ftemplate-backtrace-limit=0 -Wno-gnu-string-literal-operator-template)
 
 add_subdirectory(src)
 add_subdirectory(tst)

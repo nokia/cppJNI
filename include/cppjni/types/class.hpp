@@ -18,7 +18,7 @@ namespace types
     };
     
     template<template<typename> class class_definition_template_t>
-    class Class final: public class_definition_template_t<ClassContainer>, public boost::noncopyable
+    class Class final: public class_definition_template_t<ClassContainer>
     {
         friend class ::cppjni::VirtualMachine;
         
@@ -31,7 +31,9 @@ namespace types
         using base_t::base_t;
         
         Class() = delete;
-        
+        Class(const Class&) = delete;
+        Class& operator=(const Class&) = delete;
+
         Class(Class&& toMove)
             :jniClass(toMove.jni_getClass())
         {

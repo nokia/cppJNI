@@ -1,4 +1,4 @@
-SS_JNI
+cppJNI
 =======
 Java Native Interface (JNI) framework wrapper, which uses new C++ features in order to add type safety.
 

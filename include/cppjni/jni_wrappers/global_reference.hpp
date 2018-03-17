@@ -10,14 +10,16 @@ namespace cppjni
 namespace jniwrappers
 {
     template<typename jni_reference_type_t>
-    class GlobalReference: boost::noncopyable
+    class GlobalReference
     {
     public:
         GlobalReference(const LocalReference<jni_reference_type_t>& localReference);
         GlobalReference(GlobalReference&& toMove);
+        GlobalReference(const GlobalReference& toMove)=delete;
         ~GlobalReference();
         
         GlobalReference& operator=(GlobalReference&& toMove);
+        GlobalReference& operator=(const GlobalReference& toMove)=delete;
         
         GlobalReference() = delete;
         

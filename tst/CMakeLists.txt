@@ -15,37 +15,39 @@ get_target_property(_classDir jni.test CLASSDIR)
 
 # C++ part  ------------
 
-find_package(GTest 1.8 REQUIRED)
+find_package(GTest 1.8)
+if (GTEST_FOUND)
+    set(SOURCES
+            mpl_should.cpp
+            class_should.cpp
+            object_should.cpp
+            predefined_should.cpp
+            virtual_machine_should.cpp
+            vm_instance.cpp
+            )
+    set(HEADERS
+            test_subject/jni/test/JNITest.hpp
+            vm_instance.hpp
+            )
 
-set(SOURCES
-    mpl_should.cpp
-    class_should.cpp
-    object_should.cpp
-    predefined_should.cpp
-    virtual_machine_should.cpp
-    vm_instance.cpp
-)
-set(HEADERS
-    test_subject/jni/test/JNITest.hpp
-    vm_instance.hpp
-)
+    include_directories(
+            $<TARGET_PROPERTY:cppJNI,INCLUDE_DIRECTORIES>
+            test_subject/
+    )
+    add_definitions(-DBOOST_HANA_CONFIG_ENABLE_DEBUG_MODE)
 
-include_directories(
-    $<TARGET_PROPERTY:cppJNI,INCLUDE_DIRECTORIES>
-    test_subject/
-)
-add_definitions(-DBOOST_HANA_CONFIG_ENABLE_DEBUG_MODE)
+    add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+    add_dependencies(${PROJECT_NAME} jni.test)
+    target_link_libraries(${PROJECT_NAME}
+            GTest::GTest
+            GTest::Main
+            cppJNI
+            ${JNI_LIBRARIES}
+            Threads::Threads
+            )
 
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
-add_dependencies(${PROJECT_NAME} jni.test)
-target_link_libraries(${PROJECT_NAME}
-    ${GTEST_BOTH_LIBRARIES}
-    cppJNI
-    ${JNI_LIBRARIES}
-    pthread
-)
-
-add_test(
-    NAME CppJNITest
-    COMMAND ${PROJECT_NAME}
-)
+    add_test(
+            NAME CppJNITest
+            COMMAND ${PROJECT_NAME}
+    )
+endif ()

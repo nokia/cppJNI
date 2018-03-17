@@ -1,5 +1,4 @@
 #pragma once
-#include <boost/noncopyable.hpp>
 
 #include <jni.h>
 
@@ -13,7 +12,7 @@ namespace jniwrappers
     /**
      * Takes care of initializing (if necessary) JNI environment. This class is intended to work as a stack-only class, it must not be created on heap!
      */
-    class Environment: public boost::noncopyable
+    class Environment
     {
         friend class ::cppjni::VirtualMachine;
         
@@ -26,7 +25,9 @@ namespace jniwrappers
         
         Environment(Environment&&) = delete;
         void operator=(Environment&&) = delete;
-        
+        Environment(const Environment&) = delete;
+        Environment& operator=(const Environment&) = delete;
+
         JNIEnv* operator->();
         
     private:

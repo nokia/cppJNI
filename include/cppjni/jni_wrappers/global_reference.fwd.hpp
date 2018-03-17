@@ -1,5 +1,4 @@
 #pragma once
-#include <boost/noncopyable.hpp>
 
 #include "local_reference.fwd.hpp"
 

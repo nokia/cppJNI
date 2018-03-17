@@ -3,8 +3,6 @@
 #include <vector>
 
 #include <boost/hana/type.hpp>
-#include <boost/noncopyable.hpp>
-
 #include <jni.h>
 
 #include "concepts/static_list.hpp"
@@ -14,12 +12,14 @@
 
 namespace cppjni
 {
-    class VirtualMachine: boost::noncopyable
+    class VirtualMachine
     {
     public:
         VirtualMachine(const std::vector<std::string>& programOptions, JniVersion version);
         VirtualMachine(JniVersion version);
         VirtualMachine();
+        VirtualMachine(const VirtualMachine&)=delete;
+        VirtualMachine& operator=(const VirtualMachine&)=delete;
         ~VirtualMachine();
         
         template<template<typename> class ClassDefinition>

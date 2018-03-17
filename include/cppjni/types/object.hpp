@@ -3,8 +3,6 @@
 #include <utility>
 #include <type_traits>
 
-#include <boost/noncopyable.hpp>
-
 #include <jni.h>
 
 #include <cppjni/concepts/is_java_class_definition.hpp>
@@ -32,7 +30,7 @@ namespace types
     };
     
     template<template<typename> class class_definition_template_t>
-    class Object final: public class_definition_template_t<ObjectContainer>, public boost::noncopyable
+    class Object final: public class_definition_template_t<ObjectContainer>
     {
         friend class ObjectConverter<Object>;
         
@@ -61,6 +59,8 @@ namespace types
         Object() = delete;
         
         ~Object() = default;
+        Object(const Object&)= delete;
+        Object& operator=(const Object&)= delete;
         
     private:
         Object(const jniwrappers::GlobalReference<jclass>& jniClass, jniwrappers::GlobalReference<jobject>&& jniObject)
